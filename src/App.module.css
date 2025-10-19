@@ -1,0 +1,85 @@
+.App {
+	max-width: 768px;
+	margin: 20px auto 0 auto;
+	border: solid 0.5px black;
+	border-right: solid 5px;
+	border-left: solid 5px;
+	border-radius: 5px;
+	min-height: 95vh;
+	position: relative;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+	font-size: 25px;
+	color: lightgreen;
+}
+
+@media (max-width: 768px) {
+	.App {
+		margin: 20px;
+		font-size: 22px;
+	}
+}
+
+.listTitle {
+	margin: 20px auto;
+	text-align: center;
+	text-decoration-line: underline;
+}
+
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 25px;
+	height: 25px;
+	border: 5px solid gray;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 4s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(270deg);
+	}
+	50% {
+		transform: rotate(540deg);
+	}
+	75% {
+		transform: rotate(810deg);
+	}
+	100% {
+		transform: rotate(1080deg);
+	}
+}
+
+.tasksList {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.task {
+	display: flex;
+	margin: 10px 0;
+}
+
+.taskTitle {
+	margin: 0 auto 0 20px;
+	color: black;
+}
+
+.taskCompleted {
+	margin: 0 20px 0 20px;
+	min-height: 30px;
+	min-width: 30px;
+}
+
+.line {
+	height: 0.5px;
+	width: 96%;
+	background-color: black;
+	margin: 0 auto;
+}
