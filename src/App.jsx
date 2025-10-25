@@ -1,38 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './App.module.css';
+import { TasksListForm, TaskAdditionForm } from './components';
+import { useRequestGetAllTasks } from './hooks';
+import { UpdatingTaskForm } from './components/UpdatingTaskForm/UpdatingTaskForm';
 
 export const App = () => {
-	const [tasks, setTasks] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [refreshTasksFlag, setRefreshTasksFlag] = useState(false);
+	const refreshTasks = () => setRefreshTasksFlag(!refreshTasksFlag);
+	const {isLoading, tasks} = useRequestGetAllTasks(refreshTasksFlag);
 
-	useEffect(() => {
-		setIsLoading(true);
-
-		fetch('https://jsonplaceholder.typicode.com/todos')
-			.then((loadedTasksJSON) => loadedTasksJSON.json())
-			.then((loadedTasks) => setTasks(loadedTasks))
-			.finally(() => setIsLoading(false));
-	}, []);
+	const [updatedTask, setUpdatedTask] = useState({});
 
 	return (
 		<div className={styles.App}>
-			<h2 className={styles.listTitle}>Todo list</h2>
-			<div className={styles.tasksList}>
-				{isLoading
-				? <div className={styles.loader}></div>
-				: tasks.map((task, index) => (
-					<div key={task.id}>
-						<div className={styles.task}>
-							<div className={styles.taskTitle}>{task.title}</div>
-							<input className={styles.taskCompleted} type='checkbox'
-								checked={task.completed}
-								readOnly={true}
-							/>
-						</div>
-						{index !== tasks.length - 1  && <div className={styles.line}></div>}
-					</div>
-				))}
-			</div>
+			<h2 className={styles.todoListTitle}>Todo list</h2>
+			<TaskAdditionForm
+				refreshTasks={refreshTasks}
+			/>
+			{(Object.keys(updatedTask).length !== 0)
+				? <UpdatingTaskForm
+					updatedTask={updatedTask}
+					setUpdatedTask={setUpdatedTask}
+					refreshTasks = {refreshTasks}
+				/>
+				:<TasksListForm
+					isLoading={isLoading}
+					tasks={tasks}
+					setUpdatedTask={setUpdatedTask}
+					refreshTasks={refreshTasks}
+				/>
+			}
 		</div>
 	);
 };
