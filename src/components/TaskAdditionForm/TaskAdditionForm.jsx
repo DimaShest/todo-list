@@ -4,11 +4,11 @@ import { useRequestAddTask } from '../../hooks/useRequestAddTask';
 import { TaskEntity } from '../../classes/TaskEntity';
 import { getTaskTitleError } from '../../validation/getTaskTitleError';
 
-export const TaskAdditionForm = ({refreshTasks}) => {
+export const TaskAdditionForm = () => {
 	const [task, setTask] = useState(new TaskEntity);
 	const [taskError, setTaskError] = useState();
 
-	const { isCreating, requestAddTask } = useRequestAddTask(task, refreshTasks);
+	const { isCreating, requestAddTask } = useRequestAddTask(task);
 
 	const onCreatingTask = () => {
 		if (getTaskTitleError(task.title) === null) {

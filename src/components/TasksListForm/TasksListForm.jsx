@@ -3,6 +3,7 @@ import _ from 'lodash';
 import styles from './TasksListForm.module.css';
 import { Task } from '../';
 import { sortTasksByTitlesAlphabet } from './sortTasksByTitlesAlphabet';
+import { searchingTasksDebounce } from './searchingTasks.js';
 
 
 export const TasksListForm = ({isLoading, setUpdatedTask, tasks, refreshTasks}) => {
@@ -14,22 +15,9 @@ export const TasksListForm = ({isLoading, setUpdatedTask, tasks, refreshTasks}) 
 		setDisplayingTasks(tasks);
 	}, [tasks])
 
-	const searchingTasks = (sortedTasks, search) => {
-		const searchedTasks = sortedTasks.filter((task) =>
-			task.title.toLowerCase().includes(search.toLowerCase()),
-		);
-		setDisplayingTasks(searchedTasks);
-	};
-
-	const searchingTasksDebounce = _.debounce(searchingTasks, 250);
-
 	const refreshDisplayingTasks = (search, currentIsSorting) => {
 		const sortedTasks = currentIsSorting ? sortTasksByTitlesAlphabet(tasks) : tasks;
-
-		if (search === '')
-			setDisplayingTasks(sortedTasks);
-		else
-			searchingTasksDebounce(sortedTasks, search);
+		searchingTasksDebounce(sortedTasks, search, setDisplayingTasks);
 	}
 
 	const onSearchValueChange = (event) => {

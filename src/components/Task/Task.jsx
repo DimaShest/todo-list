@@ -1,12 +1,12 @@
 import styles from './Task.module.css'
 import { useRequestDeleteTask } from '../../hooks';
 
-export const Task = ({setUpdatedTask, task, refreshTasks}) => {
-	const {isDeleting, requestDeleteTask} = useRequestDeleteTask(task, refreshTasks)
+export const Task = ({setUpdatedTask, task}) => {
+	const {isDeleting, requestDeleteTask} = useRequestDeleteTask(task.id)
 
 	const onDeleteTask = () => {
 		if(confirm('Вы точно хотите удалить задачу: «' + task.title + '»?'))
-			requestDeleteTask(task);
+			requestDeleteTask();
 	}
 
 	return (

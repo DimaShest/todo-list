@@ -1,18 +1,16 @@
 import { useState } from 'react';
+import { ref, remove } from 'firebase/database';
+import { db } from '../firebase';
 
-export const useRequestDeleteTask = (task, refreshTasks) => {
+export const useRequestDeleteTask = (taskId) => {
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const requestDeleteTask = () => {
 		setIsDeleting(true);
 
-		fetch(import.meta.env.VITE_URL_PUBLIC + '/todos/' + task.id, {
-			method: 'DELETE',
-		})
-			.then(() => refreshTasks())
-			.finally(() => {
-				setIsDeleting(false);
-			});
+		const taskDbRef = ref(db, 'todos/' + taskId);
+
+		remove(taskDbRef).then(() => setIsDeleting(false));
 	};
 	return {
 		isDeleting,

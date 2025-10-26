@@ -1,20 +1,16 @@
 import { useState } from 'react';
+import { ref, push } from 'firebase/database';
+import { db } from '../firebase';
 
-export const useRequestAddTask = (newTask, refreshTasks) => {
+export const useRequestAddTask = (newTask) => {
 	const [isCreating, setIsCreating] = useState(false);
 
 	const requestAddTask = () => {
 		setIsCreating(true);
 
-		fetch(import.meta.env.VITE_URL_PUBLIC + '/todos', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json;charset=utf-8' },
-			body: JSON.stringify(newTask),
-		})
-			.then(() => refreshTasks())
-			.finally(() => {
-				setIsCreating(false);
-			});
+		const todosDbRef = ref(db, 'todos');
+
+		push(todosDbRef, newTask).then(() => setIsCreating(false));
 	};
 
 	return {

@@ -1,23 +1,29 @@
 import { useState, useEffect } from 'react';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase';
 
-export const useRequestGetAllTasks = (refreshTasksFlag) => {
-	const [isLoading, setIsLoading] = useState(false);
+export const useRequestGetAllTasks = () => {
+	const [isLoading, setIsLoading] = useState(true);
 	const [tasks, setTasks] = useState([]);
 
 	useEffect(() => {
-		setIsLoading(true);
+		const todosDbRef = ref(db, 'todos');
 
-		fetch(import.meta.env.VITE_URL_PUBLIC + '/todos')
-			.then((loadedTasksJSON) => loadedTasksJSON.json())
-			.then((loadedTasks) => {
-				setTasks(loadedTasks);
-			})
-			.finally(() => setIsLoading(false));
-	}, [refreshTasksFlag]);
+		return onValue(todosDbRef, (snapshot) => {
+			const loadedTasks = snapshot.val() || [];
+
+			let tasksArray = [];
+			Object.entries(loadedTasks).forEach((task) => {
+				tasksArray.push({ ...task[1], id: task[0] });
+			});
+
+			setTasks(tasksArray);
+			setIsLoading(false);
+		});
+	}, []);
 
 	return {
 		isLoading,
 		tasks,
-		setTasks,
 	};
 };

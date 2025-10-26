@@ -1,20 +1,17 @@
 import { useState } from 'react';
+import { ref, set } from 'firebase/database';
+import { db } from '../firebase';
 
-export const useRequestUpdateTask = (updatedTask, refreshTasks) => {
+export const useRequestUpdateTask = (updatedTask) => {
 	const [isUpdating, setIsUpdating] = useState(false);
 
 	const requestUpdateTask = () => {
 		setIsUpdating(true);
 
-		fetch(import.meta.env.VITE_URL_PUBLIC + '/todos/' + updatedTask.id, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json;charset=utf-8' },
-			body: JSON.stringify(updatedTask),
-		})
-			.then(() => refreshTasks())
-			.finally(() => {
-				setIsUpdating(false);
-			});
+		const taskDbRef = ref(db, 'todos/' + updatedTask.id);
+
+		delete updatedTask.id;
+		set(taskDbRef, updatedTask).then(() => setIsUpdating(false));
 	};
 
 	return {

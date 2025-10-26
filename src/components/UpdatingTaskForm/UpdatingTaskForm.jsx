@@ -2,9 +2,9 @@ import styles from './UpdatingTaskForm.module.css'
 import { useRequestUpdateTask } from '../../hooks';
 import { getTaskTitleError } from '../../validation/getTaskTitleError';
 
-export const UpdatingTaskForm = ({ updatedTask, setUpdatedTask, refreshTasks}) => {
+export const UpdatingTaskForm = ({ updatedTask, setUpdatedTask}) => {
 
-	const {isUpdating, requestUpdateTask} = useRequestUpdateTask(updatedTask, refreshTasks)
+	const {isUpdating, requestUpdateTask} = useRequestUpdateTask(updatedTask)
 
 	const taskError = getTaskTitleError(updatedTask.title);
 
