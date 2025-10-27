@@ -2,14 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDnImivISu9aNaK2smC4IoXXTT9nn8MB5A',
-	authDomain: 'tasksproject-d93db.firebaseapp.com',
-	databaseURL:
-		'https://tasksproject-d93db-default-rtdb.europe-west1.firebasedatabase.app',
-	projectId: 'tasksproject-d93db',
-	storageBucket: 'tasksproject-d93db.firebasestorage.app',
-	messagingSenderId: '514595961215',
-	appId: '1:514595961215:web:542fc331d7cb410624424a',
+	apiKey: import.meta.env.VITE_API_KEY,
+	authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+	databaseURL: import.meta.env.VITE_DATABASE_URL,
+	projectId: import.meta.env.VITE_PROJECT_ID,
+	storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env.VITE_MESSAGE_SENDER_ID,
+	appId: import.meta.env.VITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

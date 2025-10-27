@@ -15,18 +15,18 @@ export const TasksListForm = ({isLoading, setUpdatedTask, tasks, refreshTasks}) 
 		setDisplayingTasks(tasks);
 	}, [tasks])
 
-	const refreshDisplayingTasks = (search, currentIsSorting) => {
-		const sortedTasks = currentIsSorting ? sortTasksByTitlesAlphabet(tasks) : tasks;
-		searchingTasksDebounce(sortedTasks, search, setDisplayingTasks);
+	const refreshDisplayingTasks = () => {
+		const sortedTasks = isSorting ? sortTasksByTitlesAlphabet(tasks) : tasks;
+		searchingTasksDebounce(sortedTasks, searchValue, setDisplayingTasks);
 	}
+
+	refreshDisplayingTasks();
 
 	const onSearchValueChange = (event) => {
 		setSearchValue(event.target.value);
-		refreshDisplayingTasks(event.target.value, isSorting);
 	}
 
 	const onSortingTasks = () => {
-		refreshDisplayingTasks(searchValue, !isSorting)
 		setIsSorting(!isSorting);
 	}
 
