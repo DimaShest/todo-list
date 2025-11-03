@@ -1,0 +1,23 @@
+.newTaskTitle {
+	color: lightgreen;
+}
+
+.titleTask {
+	box-sizing: border-box;
+	width: 100%;
+	resize: none;
+	margin-top: 5px;
+	font-size: 20px;
+	padding: 5px;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.addBtn {
+	display: block;
+	padding: 10px;
+	margin: 10px 10px 10px auto;
+}

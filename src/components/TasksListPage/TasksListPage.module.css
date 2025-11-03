@@ -1,0 +1,56 @@
+.flexRow {
+	display: flex;
+	margin: 10px 0;
+}
+
+.search {
+	min-height: 30px;
+	padding: 5px;
+	width: 98%;
+	font-size: 20px;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+
+.taskOption {
+	margin-left: 10px;
+	padding: 5px 15px;
+}
+
+.tasksList {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.task {
+	display: flex;
+}
+
+.completed {
+	margin-right: 20px;
+	min-height: 30px;
+	min-width: 30px;
+}
+
+.title {
+	flex: 1;
+	color: black;
+	padding: 7px;
+	border-radius: 7px;
+	text-decoration: none;
+
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.title:hover {
+	background-color: lightcyan;
+}
+
+.line {
+	height: 1px;
+	background-color: lightcyan;
+	margin: 0 10px 0 60px;
+}

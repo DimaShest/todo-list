@@ -1,0 +1,46 @@
+.task {
+	display: flex;
+	margin: 10px 0;
+}
+
+.taskCompleted {
+	margin-right: 20px;
+	min-height: 30px;
+	min-width: 30px;
+}
+
+.updateTitleContainer {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.updateTitle {
+	flex: 1;
+	resize: none;
+	margin-top: 5px;
+	padding: 5px;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
+	font-size: 22px;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.taskOption {
+	height: 30px;
+	width: 30px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 25px;
+	margin: auto 10px;
+}
+
+.taskOption:hover {
+	background-color: lightblue;
+	padding: 1px;
+	border-radius: 50%;
+}
