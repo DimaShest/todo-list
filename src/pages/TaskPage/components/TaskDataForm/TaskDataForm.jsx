@@ -7,7 +7,7 @@ export const TaskDataForm = ({ task, setIsEditing, onCompleteChange, isDeleting,
 		<>
 			<div className={styles.task}>
 				<input className={styles.completed} type="checkbox"
-					checked={task.completed || ''}
+					checked={task.completed || false}
 					onChange={onCompleteChange}
 				/>
 				<div className={styles.title}>{task.title}</div>

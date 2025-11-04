@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const useRequestAddTask = (newTask, setTasks) => {
+export const useRequestAddTask = (newTask) => {
 	const [isCreating, setIsCreating] = useState(false);
 	const [isCreated, setIsCreated] = useState(false);
+
+	const navigate = useNavigate();
 
 	const requestAddTask = () => {
 		setIsCreating(true);
@@ -12,10 +15,7 @@ export const useRequestAddTask = (newTask, setTasks) => {
 			headers: { 'Content-Type': 'application/json;charset=utf-8' },
 			body: JSON.stringify(newTask),
 		})
-			.then((response) => response.json())
-			.then((newTask) => {
-				setTasks((prevTasks) => [...prevTasks, newTask]);
-			})
+			.catch(() => navigate('/err-connection-server'))
 			.finally(() => {
 				setIsCreating(false);
 				setIsCreated(true);

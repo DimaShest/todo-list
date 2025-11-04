@@ -6,11 +6,11 @@ import { useRequestAddTask } from '../../hooks/useRequestAddTask';
 import { TaskEntity } from '../../classes/TaskEntity';
 import { getTaskTitleError } from '../../validation/getTaskTitleError';
 
-export const TaskAdditionPage = ({setTasks}) => {
+export const TaskAdditionPage = () => {
 	const [task, setTask] = useState(new TaskEntity);
 	const [taskError, setTaskError] = useState();
 
-	const { isCreating, isCreated, requestAddTask } = useRequestAddTask(task, setTasks);
+	const { isCreating, isCreated, requestAddTask } = useRequestAddTask(task);
 
 	const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export const TaskAdditionPage = ({setTasks}) => {
 	}
 
 	return (
-		<>
+		<div className={stylesApp.App}>
 			<title>Todo list - новая задача</title>
 
 			<button className={`${stylesApp.button} ${stylesApp.backBtn}`}
@@ -46,6 +46,6 @@ export const TaskAdditionPage = ({setTasks}) => {
 				onClick={onCreatingTask}
 			>Добавить задачу</button>
 			{isCreating && <div>Добавление...</div>}
-		</>
+		</div>
 	)
 };

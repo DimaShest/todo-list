@@ -1,24 +1,18 @@
 import { useState } from 'react';
 
-export const useRequestDeleteTask = (taskId, setTasks) => {
+export const useRequestDeleteTask = () => {
 	const [isDeleting, setIsDeleting] = useState(false);
 	const [isDeleted, setIsDeleted] = useState(false);
 
-	const requestDeleteTask = () => {
+	const requestDeleteTask = (taskId) => {
 		setIsDeleting(true);
 
 		fetch(import.meta.env.VITE_URL_PUBLIC + '/todos/' + taskId, {
 			method: 'DELETE',
-		})
-			.then(() =>
-				setTasks((prevTasks) =>
-					prevTasks.filter((prevTask) => prevTask.id !== taskId),
-				),
-			)
-			.finally(() => {
-				setIsDeleting(false);
-				setIsDeleted(true);
-			});
+		}).then(() => {
+			setIsDeleting(false);
+			setIsDeleted(true);
+		});
 	};
 
 	return {
