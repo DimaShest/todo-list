@@ -1,0 +1,32 @@
+.addTaskContainer {
+	max-width: 768px;
+	padding-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.titleTask {
+	flex: 1;
+	height: 100%;
+	resize: none;
+	margin-top: 5px;
+	font-size: 22px;
+	padding: 5px;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.addBtn {
+	padding: 10px 15px;
+	display: block;
+	margin: 10px 0px 0px auto;
+	border: none;
+	border-radius: 2px;
+	font-size: 18px;
+	color: white;
+	background-color: lightblue;
+	cursor: pointer;
+}
