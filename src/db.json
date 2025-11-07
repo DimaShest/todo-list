@@ -2,13 +2,13 @@
   "todos": [
     {
       "id": 8,
-      "title": "ВЫПОЛНИТЬ ЗАДАНИЕ: использовать React Router там, где он уместен.",
+      "title": "ВЫПОЛНИТЬ ЗАДАНИЕ: использовать React Context там, где он уместен....",
       "completed": false
     },
     {
       "id": 9,
       "title": "ааа",
-      "completed": false
+      "completed": true
     }
   ]
 }

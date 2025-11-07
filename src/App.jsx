@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './App.module.css';
+import { AppSettersContext } from './context';
 import { TasksListForm, TaskAdditionForm, UpdatingTaskForm} from './components';
 import { Loader } from './components/UI';
 import { useRequestGetAllTasks } from './hooks';
@@ -27,12 +28,11 @@ export const App = () => {
 										setUpdatedTask={setUpdatedTask}
 										setTasks = {setTasks}
 									/>
-								:	<TasksListForm
-										isLoading={isLoading}
-										tasks={tasks}
-										setUpdatedTask={setUpdatedTask}
-										setTasks={setTasks}
-									/>
+								:	<AppSettersContext value={{ setTasks, setUpdatedTask }}>
+										<TasksListForm
+											tasks={tasks}
+										/>
+									</AppSettersContext>
 							}
 						</>
 					}

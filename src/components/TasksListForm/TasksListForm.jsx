@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { searchingTasksDebounce, sortTasksByTitlesAlphabet } from './utils';
+import { ControlPanelDataContext } from './context';
 import { ConrolPanel, TaskList } from './components';
 
-export const TasksListForm = ({ setUpdatedTask, tasks, setTasks }) => {
+export const TasksListForm = ({ tasks }) => {
 	const [displayingTasks, setDisplayingTasks] = useState([]);
 	const [isSorting, setIsSorting] = useState(false);
 	const [searchValue, setSearchValue] = useState('');
@@ -20,8 +21,10 @@ export const TasksListForm = ({ setUpdatedTask, tasks, setTasks }) => {
 
 	return (
 		<>
-			<ConrolPanel searchValue={searchValue} setSearchValue={setSearchValue} isSorting={isSorting} setIsSorting={setIsSorting} />
-			<TaskList displayingTasks={displayingTasks} setTasks={setTasks} setUpdatedTask={setUpdatedTask} searchValue={searchValue}/>
+			<ControlPanelDataContext value={{ searchValue, setSearchValue, isSorting, setIsSorting }}>
+				<ConrolPanel />
+			</ControlPanelDataContext>
+			<TaskList displayingTasks={displayingTasks} searchValue={searchValue}/>
 		</>
 	)
 }

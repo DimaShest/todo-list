@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import styles from './Task.module.css';
+import { AppSettersContext } from '../../../../../../context';
 import { useRequestDeleteTask } from '../../../../../../hooks';
 
-export const Task = ({ setUpdatedTask, task, setTasks }) => {
+export const Task = ({ task }) => {
+	const { setTasks, setUpdatedTask } = useContext(AppSettersContext);
 
-	const {isDeleting, requestDeleteTask} = useRequestDeleteTask(task.id, setTasks)
+	const { isDeleting, requestDeleteTask } = useRequestDeleteTask(task.id, setTasks)
 
 	const onDeleteTask = () => {
 		if(confirm('Вы точно хотите удалить задачу: «' + task.title + '»?'))
