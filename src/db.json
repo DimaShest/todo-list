@@ -1,14 +1,4 @@
 {
   "todos": [
-    {
-      "id": 8,
-      "title": "ВЫПОЛНИТЬ ЗАДАНИЕ: использовать React Context там, где он уместен....",
-      "completed": false
-    },
-    {
-      "id": 9,
-      "title": "ааа",
-      "completed": true
-    }
   ]
 }
