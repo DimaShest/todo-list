@@ -1,0 +1,11 @@
+.sort {
+	padding: 7px 15px;
+	display: block;
+	margin-left: 10px;
+	border: none;
+	border-radius: 2px;
+	font-size: 18px;
+	color: white;
+	background-color: lightblue;
+	cursor: pointer;
+}

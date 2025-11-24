@@ -1,0 +1,12 @@
+.tasksList {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+	position: relative;
+	min-height: 300px;
+}
+
+.line {
+	height: 0.5px;
+	background-color: black;
+}

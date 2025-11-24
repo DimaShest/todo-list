@@ -1,38 +1,45 @@
-import { useEffect, useState } from 'react';
 import styles from './App.module.css';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { PROCESSES } from './constants';
+import { Loader } from './components/UI';
+import { setTasksAsync } from './actions';
+import { ConrolPanel, TaskAdditionForm, TaskList, UpdatingTaskForm } from './components';
+
 
 export const App = () => {
-	const [tasks, setTasks] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		setIsLoading(true);
+		dispatch(setTasksAsync())
+	}, [dispatch])
 
-		fetch('https://jsonplaceholder.typicode.com/todos')
-			.then((loadedTasksJSON) => loadedTasksJSON.json())
-			.then((loadedTasks) => setTasks(loadedTasks))
-			.finally(() => setIsLoading(false));
-	}, []);
+	const process = useSelector((state) => state.serverWorkState.process);
+	const serverError = useSelector((state) => state.serverWorkState.serverError);
+	const currentTask = useSelector((state) => state.tasksState.currentTask);
 
 	return (
-		<div className={styles.App}>
-			<h2 className={styles.listTitle}>Todo list</h2>
-			<div className={styles.tasksList}>
-				{isLoading
-				? <div className={styles.loader}></div>
-				: tasks.map((task, index) => (
-					<div key={task.id}>
-						<div className={styles.task}>
-							<div className={styles.taskTitle}>{task.title}</div>
-							<input className={styles.taskCompleted} type='checkbox'
-								checked={task.completed}
-								readOnly={true}
-							/>
-						</div>
-						{index !== tasks.length - 1  && <div className={styles.line}></div>}
-					</div>
-				))}
-			</div>
-		</div>
+		<>
+			{process === PROCESSES.LOADING
+			?	<Loader />
+			:	 <div className={styles.App}>
+					{serverError !== ''
+					? 	<div className={styles.pageTitle}>Ошибка подключения к серверу.</div>
+					:	<>
+							<h2 className={styles.pageTitle}>Список задач</h2>
+							<TaskAdditionForm dispatch={dispatch}/>
+							{(Object.keys(currentTask).length !== 0)
+								?	<UpdatingTaskForm dispatch={dispatch}/>
+								: 	<>
+										<ConrolPanel dispatch={dispatch} />
+										<TaskList dispatch={dispatch} />
+									</>
+							}
+
+						</>
+					}
+				</div>
+			}
+		</>
 	);
 };

@@ -1,0 +1,32 @@
+.loader {
+	height: 30px;
+	width: 30px;
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	border: 5px solid gray;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 4s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(270deg);
+	}
+	50% {
+		transform: rotate(540deg);
+	}
+	75% {
+		transform: rotate(810deg);
+	}
+	100% {
+		transform: rotate(1080deg);
+	}
+}
