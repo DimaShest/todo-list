@@ -1,0 +1,3 @@
+export const SET_WAITING_SERVER_RESPONSE = {
+	type: 'SET_WAITING_SERVER_RESPONSE',
+};

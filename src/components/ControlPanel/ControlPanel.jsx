@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import styles from './ControlPanel.module.css';
 import { Search, Sort } from './components';
+import { CHANGE_IS_SORTING, setSearchValue } from '../../actions/conrolPanelActions';
 
 export const ConrolPanel = ({ dispatch }) =>  {
 	const searchValue = useSelector((state) => state.controlPanelState.searchValue);
@@ -8,8 +9,8 @@ export const ConrolPanel = ({ dispatch }) =>  {
 	const sortValue = isSorting ? 'Отменить сортировку' : 'Отсортировать по алфавиту';
 
 	const changeSearchValue = ({target}) =>
-		dispatch({ type: 'SET_SEARCH_VALUE', payload: target.value });
-	const onSorting = () => dispatch({ type: 'SET_IS_SORTING', payload: !isSorting });
+		dispatch(setSearchValue(target.value));
+	const onSorting = () => dispatch(CHANGE_IS_SORTING);
 
 	return (
 		<div className={styles.controlPanel}>

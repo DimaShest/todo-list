@@ -1,4 +1,4 @@
-import { fetchApi } from '../api';
+import { fetchApi } from '../../api';
 import { setCurrentTaskDefault } from './setCurrentTaskDefault';
 
 export const updateTaskAsync = (updatedTask) => (dispatch) => {

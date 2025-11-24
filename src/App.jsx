@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PROCESSES } from './constants';
 import { Loader } from './components/UI';
-import { setTasksAsync } from './actions';
 import { ConrolPanel, TaskAdditionForm, TaskList, UpdatingTaskForm } from './components';
+import { setTasksAsync } from './actions/tasksActions';
 
 
 export const App = () => {

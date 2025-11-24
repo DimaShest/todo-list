@@ -12,7 +12,7 @@ export const TaskList = ({ dispatch }) =>  {
 	const isSorting = useSelector((state) => state.controlPanelState.isSorting);
 
 	useEffect(() => {
-		if(displayingTasks.length !== 0) {
+		if(displayingTasks.length !== 0 || searchValue != '') {
 			refreshDisplayingTasks();
 		} else if (tasks.length !== 0) {
 			setDisplayingTasks(tasks);

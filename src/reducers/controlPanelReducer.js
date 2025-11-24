@@ -8,10 +8,10 @@ export const controlPanelReducer = (
 	{ type, payload },
 ) => {
 	switch (type) {
-		case 'SET_IS_SORTING': {
+		case 'CHANGE_IS_SORTING': {
 			return {
 				...state,
-				isSorting: payload,
+				isSorting: !state.isSorting,
 			};
 		}
 		case 'SET_SEARCH_VALUE': {

@@ -14,10 +14,22 @@ export const serverWorkReducer = (state = initialServerWorkState, { type, payloa
 				process: payload,
 			};
 		}
-		case 'SET_IS_WAITING_SERVER_RESPONSE': {
+		case 'REMOVE_PROCESS': {
 			return {
 				...state,
-				isWaitingServerResponse: payload,
+				process: PROCESSES.NONE,
+			};
+		}
+		case 'SET_WAITING_SERVER_RESPONSE': {
+			return {
+				...state,
+				isWaitingServerResponse: true,
+			};
+		}
+		case 'REMOVE_WAITING_SERVER_RESPONSE': {
+			return {
+				...state,
+				isWaitingServerResponse: false,
 			};
 		}
 		case 'SET_SERVER_ERROR': {

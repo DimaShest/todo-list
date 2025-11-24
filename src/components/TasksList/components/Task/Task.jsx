@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import styles from './Task.module.css';
-import { deleteTaskAsync, setCurrentTask } from '../../../../actions';
+import { deleteTaskAsync, setCurrentTask } from '../../../../actions/tasksActions';
 import { NoticeProcess } from '../../../UI';
 import { PROCESSES } from '../../../../constants/processes';
 

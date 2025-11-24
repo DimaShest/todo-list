@@ -1,3 +1,9 @@
+import {
+	REMOVE_PROCESS,
+	REMOVE_WAITING_SERVER_RESPONSE,
+	SET_WAITING_SERVER_RESPONSE,
+	setProcess,
+} from '../actions/serverWorkActions';
 import { PROCESSES } from '../constants/processes';
 
 export const fetchApi = (dispatch, task = null) => {
@@ -29,8 +35,8 @@ export const fetchApi = (dispatch, task = null) => {
 		process = PROCESSES.UPDATING;
 	}
 
-	dispatch({ type: 'SET_PROCESS', payload: process });
-	dispatch({ type: 'SET_IS_WAITING_SERVER_RESPONSE', payload: true });
+	dispatch(setProcess(process));
+	dispatch(SET_WAITING_SERVER_RESPONSE);
 
 	return fetch(
 		import.meta.env.VITE_URL_PUBLIC + '/todos' + requestStringProps,
@@ -38,7 +44,7 @@ export const fetchApi = (dispatch, task = null) => {
 	)
 		.then((response) => response.json())
 		.finally(() => {
-			dispatch({ type: 'SET_IS_WAITING_SERVER_RESPONSE', payload: false });
-			dispatch({ type: 'SET_PROCESS', payload: PROCESSES.NONE });
+			dispatch(REMOVE_WAITING_SERVER_RESPONSE);
+			dispatch(REMOVE_PROCESS);
 		});
 };

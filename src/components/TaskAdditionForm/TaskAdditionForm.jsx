@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './TaskAdditionForm.module.css'
 import { PROCESSES, NEW_TASK } from '../../constants';
-import { addTaskAsync } from '../../actions';
+import { addTaskAsync } from '../../actions/tasksActions';
 import { NoticeProcess } from '../UI';
 import { getTaskTitleError } from '../../validation';
 

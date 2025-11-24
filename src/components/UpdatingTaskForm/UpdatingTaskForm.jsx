@@ -2,7 +2,7 @@ import styles from './UpdatingTaskForm.module.css'
 import { getTaskTitleError } from '../../validation/getTaskTitleError';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { setCurrentTaskDefault, updateTaskAsync } from '../../actions';
+import { setCurrentTaskDefault, updateTaskAsync } from '../../actions/tasksActions';
 import { PROCESSES } from '../../constants/processes';
 import { NoticeProcess } from '../UI';
 

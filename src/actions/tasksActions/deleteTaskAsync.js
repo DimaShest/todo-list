@@ -1,4 +1,4 @@
-import { fetchApi } from '../api';
+import { fetchApi } from '../../api';
 
 export const deleteTaskAsync = (task) => (dispatch) => {
 	return fetchApi(dispatch, task.id).then(() =>
